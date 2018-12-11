@@ -1,0 +1,136 @@
+<html>
+   <head>
+      <title>Photo Gallery App</title>
+	   <link href="style.css" rel="stylesheet">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type = "text/javascript" src = "vue.js"></script>
+	  
+  </head>
+   <body>
+   
+   
+<div id="app">
+    
+<ul>
+  <li class="slanted" v-for="item in photosarr"  >
+   <img class="mainimage" :src="item.url"   >
+   <img class="hoverimage" :src="item.url"   >
+   <img class="arrowimage" src="http://i68.tinypic.com/2j1wy0p.png" :alt="item.title" >
+   <span class="spanstyle"> </span>
+    <input type="button" class="cmd" value="View full size" />
+  </li>
+</ul>
+ 
+ <button class="centerstyle" v-on:click="getdata">Load more...</button>
+ 
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+<img class="modelimg" src="" >
+  </div>
+
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+$(".cmd").css("display", "none");
+$(".spanstyle").hide();
+$(document).on("mouseenter", ".arrowimage", function(event) {
+    // hover starts code here
+	var objThis=$(this);
+	
+	objThis.siblings('.spanstyle').text($(this).attr("alt"));
+	objThis.siblings(".mainimage").hide();
+	objThis.parent(".slanted").height("200px");
+	objThis.siblings(".hoverimage").show();
+	objThis.siblings(".spanstyle").show();
+    objThis.siblings(".cmd").css("display", "block");
+
+	
+});
+
+
+
+// Get the button that opens the modal
+
+
+// When the user clicks on the button, open the modal 
+$(document).on("click", ".cmd", function() {
+    // hover ends code here
+	$(".modelimg")[0].src=$(this).siblings(".mainimage")[0].src;
+	$("#myModal").show();
+});
+
+
+// When the user clicks on <span> (x), close the modal
+$(".close" ).click(function() {
+ $("#myModal").hide();
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target.class== "modal") {
+   $("#myModal").hide();
+  }
+}
+    
+});
+</script>
+
+
+<script type="text/javascript">
+
+
+var id1=1;
+var id2=2;
+var id3=3;
+
+   
+new Vue({
+    el: '#app',
+    data: {
+        photosarr: []
+    },
+	methods: {
+			   getdata : function () {
+			   var _this = this;
+			   
+			   $.when( $.getJSON('http://jsonplaceholder.typicode.com/photos/' + id1), $.getJSON('http://jsonplaceholder.typicode.com/photos/' + id2),$.getJSON('http://jsonplaceholder.typicode.com/photos/' + id3)).done(function( json1,json2,json3) {
+			   // a1 and a2 are arguments resolved for the page1 and page2 ajax requests, respectively.
+			  // Each argument is an array with the following structure: [ data, statusText, jqXHR ]
+			  _this.photosarr.push(json1[0]);
+			 _this.photosarr.push(json2[0]);
+			 _this.photosarr.push(json3[0]);
+			 id1=id1+3;
+			 id2=id2+3;
+			 id3=id3+3;
+
+	});       
+
+		}
+	},
+	moveimage: function()
+	{
+	  alert("hi");
+	}
+	,
+	 beforeMount: function(){
+    	this.getdata();
+        }
+
+});
+
+     
+		   
+		
+</script>
+
+   </body>
+</html>
