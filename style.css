@@ -1,9 +1,19 @@
-.centerstyle{
-    position:relative;
-    left:50%;
-    top:10%;
-    margin:-1px 0 0 -150px;
+.buttonDiv {
+  
+   text-align:center;
+    top: 70%;
+   left: 50%;
+   margin: -100px 0px 0px -100px;
+  
+   
 }
+
+.button {
+   position:relative;
+   
+   transform: translateY(-50%);
+}
+
 
 body
 {
@@ -26,43 +36,36 @@ li {
 }
 	
 	
-.slanted {
+.photodiv {
+  float: left;
+  height: 300px;
+  width:30%;
+  padding:10px;
+  position:relative;
+  background-color:white;
+  border:1px;
+  border-color:light grey;
+}
+	
+.mainimage {
+
+ height: 300px;
  
-   height: 300px;
- 
-   margin-bottom: 20px;
-  -webkit-transform: skewY(-2.5deg);
-  -moz-transform: skewY(-2.5deg);
-  -ms-transform: skewY(-2.5deg);
-  -o-transform: skewY(-2.5deg);
-  transform: skewY(-2.5deg);
-  overflow:hidden;
+ margin-bottom: 20px;
+ -webkit-clip-path: polygon(0 0, 100% 0%, 100% 86%, 0 94%);
+clip-path: polygon(0 0, 100% 0%, 100% 86%, 0 94%);
  
 }
 
-.mainimage {
-  
-   height: 300px;
-  padding: 20px;
-  margin-bottom: 20px;
-  -webkit-transform: skewY(2.5deg);
-  -moz-transform: skewY(2.5deg);
-  -ms-transform: skewY(2.5deg);
-  -o-transform: skewY(2.5deg);
-  transform: skewY(2.5deg);
-  
-}
 
 .hoverimage {
-  
-   height: 300px;
-  padding: 20px;
-  margin-bottom: 20px;
-  -webkit-transform: skewY(2.5deg);
-  -moz-transform: skewY(2.5deg);
-  -ms-transform: skewY(2.5deg);
-  -o-transform: skewY(2.5deg);
-  transform: skewY(2.5deg);
+ 
+ height: 300px;
+ margin-bottom: 20px;
+-webkit-clip-path: polygon(0 0, 100% 0%, 100% 40%, 0 30%);
+clip-path: polygon(0 0, 100% 0%, 100% 40%, 0 30%);
+display:none;
+ 
   
 }
 
@@ -79,7 +82,7 @@ li {
 
 .spanstyle {
   position: absolute;
-  top: 70px;
+  top: 150px;
   left: 50px;
   width:200px;
   height:100px;
@@ -89,7 +92,7 @@ li {
 
 .cmd {
    position: absolute;
-  top: 115px;
+  top: 210px;
   left: 50px;
   width:100px;
    z-index:1;
