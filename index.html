@@ -16,8 +16,8 @@
    <img class="mainimage" :src="item.url"   >
    <img class="hoverimage" :src="item.url"   >
    <img class="arrowimage" src="http://i68.tinypic.com/2j1wy0p.png" :alt="item.title" >
-   <span class="spanstyle"> </span>
-    <input type="button" class="cmd" value="View full size" />
+   <span class="spanstyle"></span>
+   <input type="button" class="cmd" value="View full size" >
 	
   </div>
   <div class="buttonDiv">
@@ -26,9 +26,6 @@
 
 </div>
  
-
- 
-
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -91,31 +88,44 @@ new Vue({
 $(document).ready(function(){
 
 $(".cmd").css("display", "none");
-$(".spanstyle").hide();
+$(".divtext").css("display", "none");
 $(".hoverimage").css("display", "none");
-$(document).on("mouseenter", ".arrowimage", function(event) {
+$(document).on("mouseenter", ".photodiv", function(event) {
     // hover starts code here
 	var objThis=$(this);
 	
-	objThis.siblings('.spanstyle').text($(this).attr("alt"));
-	objThis.siblings(".mainimage").hide();
-	objThis.parent(".slanted").height("200px");
-	objThis.siblings(".hoverimage").show();
-	objThis.siblings(".spanstyle").show();
-    objThis.siblings(".cmd").css("display", "block");
+	objThis.find('.spanstyle').text(objThis.find(".arrowimage").attr("alt"));
+	objThis.find(".mainimage").hide();
+	objThis.find(".slanted").height("200px");
+	
+	objThis.find(".hoverimage").css("display", "block");
+	objThis.find(".spanstyle").css("display", "block");
+    objThis.find(".cmd").css("display", "block");
+
+	
+});
+
+
+$(document).on("mouseleave", ".photodiv", function(event) {
+    // hover starts code here
+	var objThis=$(this);
+	
+	objThis.find('.spanstyle').text(objThis.find(".arrowimage").attr("alt"));
+	objThis.find(".mainimage").show();
+	objThis.find(".slanted").height("300px");
+	objThis.find(".hoverimage").hide();
+	objThis.find(".spanstyle").css("display", "none");
+    objThis.find(".cmd").css("display", "none");
 
 	
 });
 
 
 
-// Get the button that opens the modal
-
-
 // When the user clicks on the button, open the modal 
-$(document).on("click", ".cmd", function() {
+$(document).on("click", ".photodiv", function() {
     // hover ends code here
-	$(".modelimg")[0].src=$(this).siblings(".mainimage")[0].src;
+	$(".modelimg")[0].src=$(this).find(".mainimage")[0].src;
 	$("#myModal").show();
 });
 
