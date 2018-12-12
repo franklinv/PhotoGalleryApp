@@ -11,17 +11,22 @@
    
 <div id="app">
     
-<ul>
-  <li class="slanted" v-for="item in photosarr"  >
+<div>
+  <div class="photodiv" v-for="item in photosarr"  >
    <img class="mainimage" :src="item.url"   >
    <img class="hoverimage" :src="item.url"   >
    <img class="arrowimage" src="http://i68.tinypic.com/2j1wy0p.png" :alt="item.title" >
    <span class="spanstyle"> </span>
     <input type="button" class="cmd" value="View full size" />
-  </li>
-</ul>
+	
+  </div>
+  <div class="buttonDiv">
+  <button class="button" v-on:click="getdata">Load more...</button>
+   </div>
+
+</div>
  
- <button class="centerstyle" v-on:click="getdata">Load more...</button>
+
  
 
 
@@ -87,6 +92,7 @@ $(document).ready(function(){
 
 $(".cmd").css("display", "none");
 $(".spanstyle").hide();
+$(".hoverimage").css("display", "none");
 $(document).on("mouseenter", ".arrowimage", function(event) {
     // hover starts code here
 	var objThis=$(this);
